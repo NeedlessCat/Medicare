@@ -26,13 +26,15 @@ const Profile = ({ user }) => {
   };
 
   useEffect(() => {
-    setFormData({
-      name: user.name,
-      email: user.email,
-      photo: user.photo,
-      gender: user.gender,
-      bloodType: user.bloodType,
-    });
+    if (user) {
+      setFormData({
+        name: user.name,
+        email: user.email,
+        photo: user.photo,
+        gender: user.gender,
+        bloodType: user.bloodType,
+      });
+    }
   }, [user]);
 
   const handleFileInputChange = async (event) => {
@@ -182,6 +184,18 @@ const Profile = ({ user }) => {
       </form>
     </div>
   );
+};
+
+Profile.propTypes = {
+  user: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+    password: PropTypes.string,
+    photo: PropTypes.string,
+    gender: PropTypes.string,
+    bloodType: PropTypes.string,
+    _id: PropTypes.string,
+  }),
 };
 
 export default Profile;
